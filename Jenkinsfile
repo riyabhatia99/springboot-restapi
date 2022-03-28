@@ -6,4 +6,10 @@ node{
     def mvnHome =  tool name: 'Maven', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
+  stage('Build Docker Image'){
+    sh 'docker build -t riya1798/comp-assessment:1.0 .'
+  }
+  stage('Push Docker Image'){
+    
+    sh 'docker push riya1798/comp-assessment:1.0'
 } 
