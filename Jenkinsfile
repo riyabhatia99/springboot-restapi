@@ -1,4 +1,5 @@
 node{
+  source /etc/profile
   stage('SCM Checkout'){
     git 'https://github.com/riyabhatia99/springboot-restapi.git'
   }
