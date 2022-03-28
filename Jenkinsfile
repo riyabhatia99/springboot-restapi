@@ -10,6 +10,9 @@ node{
     sh 'docker build -t riya1798/comp-assessment:1.0 .'
   }
   stage('Push Docker Image'){
-    
-    sh 'docker push riya1798/comp-assessment:1.0'
-} 
+    withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubPwd')]) {
+    sh 'docker login -u riya1798 -p ${dockerhubPwd}'
+  }
+        sh 'docker push riya1798/comp-assessment:1.0'
+  } 
+}
