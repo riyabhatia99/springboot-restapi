@@ -8,7 +8,7 @@ node{
   }
   stage('Build Docker Image'){
     def dockHome =  tool name: 'Docker', type: 'dockerTool'
-    sh "${dockHome}/var/lib build -t riya1798/comp-assessment:1.0 ."
+    sh "${dockHome}/var/lib/docker build -t riya1798/comp-assessment:1.0 ."
   }
   stage('Push Docker Image'){
     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubPwd')]) {
