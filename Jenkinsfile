@@ -7,11 +7,12 @@ node{
     sh "${mvnHome}/bin/mvn package"
   }
   stage('Build Docker Image'){
-    sleep(84)
-    echo "Build done"
+    sh 'docker build -t riya1798/comp-assessment:1.0 .'
   }
   stage('Push Docker Image'){
-    sleep(36)
-    echo "image pushed"
+    withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubPwd')]) {
+    sh 'docker login -u riya1798 -p ${dockerhubPwd}'
+  }
+        sh 'docker push riya1798/comp-assessment:1.0'
   } 
 }
