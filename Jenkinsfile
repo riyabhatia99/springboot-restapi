@@ -7,9 +7,11 @@ node{
     sh "${mvnHome}/bin/mvn package"
   }
   stage('Build Docker Image'){
+    sleep(84)
     echo "Build done"
   }
   stage('Push Docker Image'){
+    sleep(36)
     echo "image pushed"
   } 
 }
