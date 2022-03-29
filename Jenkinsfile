@@ -6,10 +6,9 @@ node{
     def mvnHome =  tool name: 'Maven', type: 'maven'
     sh "${mvnHome}/bin/mvn package"
   }
+      def dockerHome = tool name: 'Docker', type: 'dockerTool'
   stage('Build Docker Image'){
-    def dockerHome = tool name: 'Docker', type: 'dockerTool'
-    echo "${dockerHome}"
-    sh 'docker build -t riya1798/comp-assessment:1.0 .'
+    sh "${dockerHome}/bin/docker build -t riya1798/comp-assessment:1.0 ."
   }
   stage('Push Docker Image'){
     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubPwd')]) {
